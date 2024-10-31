@@ -1,5 +1,5 @@
 let timer = 60;
-let running = false;
+let running = true;
 let switching = false;
 let scoring = false;
 
