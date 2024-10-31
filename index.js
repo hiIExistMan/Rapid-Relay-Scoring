@@ -1,4 +1,4 @@
-let timer = 6000;
+let timer = 60000;
 let running = false;
 let switching = false;
 let scoring = false;
