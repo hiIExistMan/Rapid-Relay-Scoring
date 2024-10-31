@@ -14,6 +14,8 @@ let s4 = false;
 
 let board, open, closed;
 
+
+
 function preload() {
     board = loadImage("rapid-relay.png");
     closed = loadImage("close_switch.png");
@@ -47,6 +49,23 @@ function mousePressed() {
         s3 = false;
         s4 = false;
         running = true;
+        let osc = new p5.Oscillator();
+  osc.start();
+  osc.freq(440);
+  setTimeout(osc.stop,500);
+
+        setTimeout(() => {
+            let osc = new p5.Oscillator();
+  osc.start();
+  osc.freq(440);
+  setTimeout(osc.stop,500);
+        },35000);
+        setTimeout(() => {
+            let osc = new p5.Oscillator();
+  osc.start();
+  osc.freq(440);
+  setTimeout(osc.stop,500);
+        },25000);
     }
 
     if(switching) {
@@ -83,6 +102,10 @@ function draw() {
         if(timer <= 0) {
             running = false;
             switching = true;
+            let osc = new p5.Oscillator();
+              osc.start();
+              osc.freq(440);
+              setTimeout(osc.stop,500);
             
         }
     } else if(switching) {
