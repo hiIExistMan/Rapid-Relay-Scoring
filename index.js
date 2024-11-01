@@ -1,5 +1,5 @@
-let timer = 60;
-let running = true;
+let timer = 6000;
+let running = false;
 let switching = false;
 let scoring = false;
 
@@ -11,15 +11,16 @@ let s2 = false;
 let s3 = false;
 let s4 = false;
 
+let alarm;
+
 
 let board, open, closed;
-
-
 
 function preload() {
     board = loadImage("rapid-relay.png");
     closed = loadImage("close_switch.png");
     open = loadImage("open_switch.png");
+    alarm = loadSound("alarm.wav");
 }
 
 function setup() {
@@ -37,6 +38,7 @@ function mousePressed() {
         running = true;
         goals = 0;
         passes = 0;
+        alarm.play();
     }
 
     if(scoring) {
@@ -49,23 +51,10 @@ function mousePressed() {
         s3 = false;
         s4 = false;
         running = true;
-        let osc = new p5.Oscillator();
-  osc.start();
-  osc.freq(440);
-  setTimeout(osc.stop,500);
+        alarm.play();
 
-        setTimeout(() => {
-            let osc = new p5.Oscillator();
-  osc.start();
-  osc.freq(440);
-  setTimeout(osc.stop,500);
-        },35000);
-        setTimeout(() => {
-            let osc = new p5.Oscillator();
-  osc.start();
-  osc.freq(440);
-  setTimeout(osc.stop,500);
-        },25000);
+        setTimeout(() => {alarm.play();},25000)
+        setTimeout(() => {alarm.play();},35000)
     }
 
     if(switching) {
@@ -99,14 +88,11 @@ function draw() {
         stroke(255,127,127);
         arc(width/2,height/2,100,100,HALF_PI,HALF_PI-6.28*(timer/60000));
         timer -= deltaTime;
+
         if(timer <= 0) {
             running = false;
             switching = true;
-            let osc = new p5.Oscillator();
-              osc.start();
-              osc.freq(440);
-              setTimeout(osc.stop,500);
-            
+            alarm.play();
         }
     } else if(switching) {
         image(board,0,height/3,width,height/3);
