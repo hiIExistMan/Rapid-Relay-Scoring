@@ -110,7 +110,7 @@ function draw() {
         if(switches == 3) passScore = 10;
         if(switches == 4) passScore = 12;
 
-        let score = passScore*passes+goals+switches;
+        let score = passScore*min(passes,goals)+goals+switches;
         textAlign(CENTER,CENTER);
         textSize(64);
         text(score,width/2,height/2)
